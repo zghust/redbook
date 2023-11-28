@@ -2,7 +2,7 @@ import axios from 'axios'
 // import { getTokens } from './storage'
 // 1. 创建新的 axios 实例
 const http = axios.create({
-  baseURL: 'http://123.207.32.32:8000/',
+  baseURL: 'http://codercba.com:1888/api/',
 })
 
 // 2. 设置请求拦截器和响应拦截器

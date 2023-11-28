@@ -1,10 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import http from '../../utils/http'
 //异步请求创建action
-export const fetchdata = createAsyncThunk('/home/multidata', async () => {
-  const res = await http.get('/home/multidata')
-  return res.data
-})
+export const fetchdata = createAsyncThunk(
+  '/home/multidata',
+  async (currentPage = 1) => {
+    const res = await http.get('home/houselist', {
+      params: { page: currentPage },
+    })
+    return res.data
+  }
+)
 const homeSlice = createSlice({
   name: 'home',
   initialState: { cout: 888, detaildata: {} },

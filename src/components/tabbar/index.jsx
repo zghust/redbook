@@ -13,7 +13,7 @@ function Tabbar() {
   const navigate = useNavigate()
   useEffect(() => {
     navigate(currentIndex)
-  }, [currentIndex])
+  }, [currentIndex, navigate])
   return (
     <TabWrapper>
       <TabBar
