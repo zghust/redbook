@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import http from '../../utils/http'
-
+//异步请求创建action
 export const fetchdata = createAsyncThunk('/home/multidata', async () => {
   const res = await http.get('/home/multidata')
   return res.data
