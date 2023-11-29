@@ -7,12 +7,14 @@ export const fetchdata = createAsyncThunk(
     const res = await http.get('home/houselist', {
       params: { page: currentPage },
     })
-    return res.data
+
+    console.log(res.data.data)
+    return res.data.data
   }
 )
 const homeSlice = createSlice({
   name: 'home',
-  initialState: { cout: 888, detaildata: {} },
+  initialState: { detaildata: [] },
   reducers: {
     getAdd(state, { payload }) {
       state.cout = state.cout + payload
@@ -21,7 +23,7 @@ const homeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchdata.fulfilled, (state, { payload }) => {
-        state.detaildata = payload
+        state.detaildata = [...state.detaildata, ...payload]
       })
       .addDefaultCase((state, action) => {})
   },

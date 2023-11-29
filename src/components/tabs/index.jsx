@@ -1,6 +1,7 @@
 import { Tabs } from 'antd-mobile'
 import { TabsWrapper } from './style'
 import TabsContent from '../../pages/home/tabs-content'
+
 function Tabss() {
   return (
     <TabsWrapper>

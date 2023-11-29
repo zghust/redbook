@@ -4,9 +4,9 @@ import { fetchdata } from '../../redux/modules/home'
 import { useDispatch } from 'react-redux'
 function Home() {
   const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchdata())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchdata())
+  // }, [dispatch])
   return (
     <div className="home">
       <Tabss></Tabss>
