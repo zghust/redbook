@@ -12,9 +12,6 @@ export const TabsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-
-    height: 83vh;
-    overflow: auto;
   }
   .highimg {
     position: absolute;

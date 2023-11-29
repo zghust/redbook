@@ -13,4 +13,8 @@ export const TabsWrapper = styled.div`
   .adm-tabs-tab {
     font-size: 15px;
   }
+  .content {
+    height: 83vh;
+    overflow: auto;
+  }
 `

@@ -1,24 +1,7 @@
-import { useSelector } from 'react-redux'
 import { TabsWrapper } from './style'
 import { Ellipsis } from 'antd-mobile'
-import { fetchdata } from '../../../redux/modules/home'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { InfiniteScroll } from 'antd-mobile'
-function TabsContent() {
-  const res = useSelector((state) => state.home.detaildata)
-  const dispatch = useDispatch()
-  const [hasMore, setHasMore] = useState(true)
-  const [loading, setloading] = useState(false)
-  const [currentpage, setcurrentpage] = useState(1)
-  const loadMore = () => {
-    if (loading) return
-    setloading(true)
-    dispatch(fetchdata(currentpage)).then(() => {
-      setloading(false)
-      setcurrentpage(currentpage + 1)
-    })
-  }
+
+function TabsContent({ res }) {
   return (
     <TabsWrapper>
       <div className="tabscontent">
@@ -43,7 +26,6 @@ function TabsContent() {
             </div>
           )
         })}
-        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
       </div>
     </TabsWrapper>
   )

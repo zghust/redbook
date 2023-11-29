@@ -1,16 +1,16 @@
-import { useEffect } from 'react'
-import Tabss from '../../components/tabs'
-import { fetchdata } from '../../redux/modules/home'
-import { useDispatch } from 'react-redux'
+import Tabss from './tabs/index'
+import { SearchOutline } from 'antd-mobile-icons'
+import { HomeWrapper } from './style'
 function Home() {
-  const dispatch = useDispatch()
-  // useEffect(() => {
-  //   dispatch(fetchdata())
-  // }, [dispatch])
   return (
-    <div className="home">
-      <Tabss></Tabss>
-    </div>
+    <HomeWrapper>
+      <div className="home">
+        <Tabss></Tabss>
+        <span className="searchicon" onClick={() => console.log('aaa')}>
+          <SearchOutline />
+        </span>
+      </div>
+    </HomeWrapper>
   )
 }
 
