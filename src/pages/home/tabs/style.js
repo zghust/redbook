@@ -17,4 +17,7 @@ export const TabsWrapper = styled.div`
     height: 83vh;
     overflow: auto;
   }
+  .content::-webkit-scrollbar {
+    width: 0;
+  }
 `
