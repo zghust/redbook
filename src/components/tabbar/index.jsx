@@ -13,12 +13,12 @@ import { useLocation } from 'react-router-dom'
 
 const tabs = [
   {
-    title: '首页',
+    title: '书城',
     icon: (active) => (active ? <EyeFill /> : <EyeOutline />),
     path: '/home',
   },
   {
-    title: '收藏',
+    title: '喜欢',
     icon: (active) => (active ? <HeartFill /> : <HeartOutline />),
     path: '/favor',
   },
@@ -37,9 +37,9 @@ function Tabbar({ navigate }) {
   useEffect(() => {
     navigate(currentIndex)
   }, [currentIndex])
-  useEffect(() => {
-    setCurrentIndex(location.pathname)
-  }, [location])
+  // useEffect(() => {
+  //   setCurrentIndex(location.pathname)
+  // }, [location])
   return (
     <TabWrapper>
       <TabBar

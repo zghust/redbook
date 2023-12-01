@@ -12,11 +12,8 @@ export const TabsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    height: 88vh;
   }
-  .tabscontent::-webkit-scrollbar {
-    width: 0;
-  }
+
   .highimg {
     position: absolute;
     bottom: 0px;

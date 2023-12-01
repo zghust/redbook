@@ -25,4 +25,10 @@ export const TabsWrapper = styled.div`
   .scan {
     margin-left: 15px;
   }
+  .scrollcontent {
+    height: 88vh;
+  }
+  .scrollcontent::-webkit-scrollbar {
+    width: 0;
+  }
 `

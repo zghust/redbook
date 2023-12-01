@@ -3,11 +3,12 @@ import { Route, Routes } from 'react-router-dom'
 import { AppWrapper } from './style'
 import Tabbar from './components/tabbar'
 import { Navigate, useNavigate } from 'react-router-dom'
+import './assets/css/reset.css'
 import React, { useState } from 'react'
 // import Authrouter from './router/authrouter'
 // const Authrouter = React.lazy(() => import('./router/authrouter'))
 const Home = React.lazy(() => import('./pages/home'))
-const Msg = React.lazy(() => import('./pages/msg'))
+
 const Favor = React.lazy(() => import('./pages/favor'))
 const Mine = React.lazy(() => import('./pages/mine'))
 const Login = React.lazy(() => import('./pages/login'))
@@ -21,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" />}></Route>
           <Route path="/home" element={<Home></Home>}></Route>
-          <Route path="/msg" element={<Msg navigate={navigate}></Msg>}></Route>
+
           <Route
             path="/favor"
             element={<Favor navigate={navigate}></Favor>}

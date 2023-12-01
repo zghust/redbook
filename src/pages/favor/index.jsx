@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchuserdata } from '../../redux/modules/user'
 import { hasToken } from '../../utils/storage'
@@ -13,4 +13,4 @@ function Favor({ navigate }) {
     </div>
   )
 }
-export default Favor
+export default memo(Favor)

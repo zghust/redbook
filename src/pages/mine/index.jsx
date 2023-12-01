@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchuserdata } from '../../redux/modules/user'
 import { hasToken } from '../../utils/storage'
+
 // import Authrouter from '../../router/authrouter'
 function Mine({ navigate }) {
   const res = useSelector((state) => state.user.userdata)
@@ -22,4 +23,4 @@ function Mine({ navigate }) {
     </div>
   )
 }
-export default Mine
+export default memo(Mine)
