@@ -9,7 +9,6 @@ import {
   cleardata,
 } from '../../../redux/modules/home'
 import { useEffect, useRef, useState, memo } from 'react'
-import { useDispatch } from 'react-redux'
 const tabItems = [
   { key: '3', title: '男频' },
   { key: '9', title: '女频' },
@@ -17,25 +16,9 @@ const tabItems = [
 ]
 function Tabss() {
   const swiperRef = useRef(null)
-  const dispatch = useDispatch()
   const [activeIndex, setActiveIndex] = useState(1)
-  const [initialLoad, setInitialLoad] = useState(false)
   const [scrollY, setScrollY] = useState(false)
-  useEffect(() => {
-    dispatch(cleardata())
-      .then(() => {
-        Promise.all([
-          dispatch(fetchdata0()),
-          dispatch(fetchdata1()),
-          dispatch(fetchdata2()),
-        ])
-          .then(() => {
-            setInitialLoad(true)
-          })
-          .catch()
-      })
-      .catch()
-  }, [])
+
   useEffect(() => {
     const handleScroll = () => {
       const newY = document.documentElement.scrollTop
@@ -85,11 +68,7 @@ function Tabss() {
           {tabItems.map((item, index) => (
             <Swiper.Item key={item.key}>
               <div className="content">
-                <TabsContent
-                  scrollY={scrollY}
-                  index={index}
-                  initialLoad={initialLoad}
-                />
+                <TabsContent scrollY={scrollY} index={index} />
               </div>
             </Swiper.Item>
           ))}

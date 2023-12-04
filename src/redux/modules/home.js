@@ -31,10 +31,7 @@ export const fetchdata2 = createAsyncThunk(
     return res.data.data
   }
 )
-//因为要确保cleardata执行完毕后再执行后面操作，所以必须用异步组件才能返回promise
-export const cleardata = createAsyncThunk('cleardata', () => {
-  return
-})
+
 const homeSlice = createSlice({
   name: 'home',
   initialState: { detaildata0: [], detaildata1: [], detaildata2: [] },
@@ -42,11 +39,15 @@ const homeSlice = createSlice({
     getAdd(state, { payload }) {
       state.cout = state.cout + payload
     },
-    // cleardata(state) {
-    //   state.detaildata0 = []
-    //   state.detaildata1 = []
-    //   state.detaildata2 = []
-    // },
+    cleardata0(state) {
+      state.detaildata0 = []
+    },
+    cleardata1(state) {
+      state.detaildata1 = []
+    },
+    cleardata2(state) {
+      state.detaildata2 = []
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -59,13 +60,9 @@ const homeSlice = createSlice({
       .addCase(fetchdata2.fulfilled, (state, { payload }) => {
         state.detaildata2 = [...state.detaildata2, ...payload]
       })
-      .addCase(cleardata.fulfilled, (state) => {
-        state.detaildata0 = []
-        state.detaildata1 = []
-        state.detaildata2 = []
-      })
+
       .addDefaultCase((state, action) => {})
   },
 })
-// export const { cleardata } = homeSlice.actions
+export const { cleardata0, cleardata1, cleardata2 } = homeSlice.actions
 export default homeSlice.reducer
