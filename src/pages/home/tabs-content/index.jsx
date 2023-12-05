@@ -1,7 +1,7 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { TabsWrapper } from './style'
 import { Ellipsis, PullToRefresh } from 'antd-mobile'
-import { InfiniteScroll } from 'antd-mobile'
+import { InfiniteScroll, Divider } from 'antd-mobile'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   fetchdata0,
@@ -11,14 +11,16 @@ import {
   cleardata1,
   cleardata2,
 } from '../../../redux/modules/home'
-
-function TabsContent({ scrollY, index }) {
+import Item from './item'
+import TodayRead from './todayread'
+function TabsContent({ scrollY, index, activeIndex }) {
   const res = useSelector((state) => state.home[`detaildata${index}`])
-
+  const ref = useRef()
   const dispatch = useDispatch()
   const [hasMore, setHasMore] = useState(true)
   const [currentpage, setcurrentpage] = useState(1)
-  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [prescrollyy, setprescrollyy] = useState(0)
+  const [scrollyy, setscrollyy] = useState(0)
   const loadMore = async () => {
     if (index === 0) {
       await dispatch(fetchdata0(currentpage)).then(() => {
@@ -50,36 +52,83 @@ function TabsContent({ scrollY, index }) {
       dispatch(cleardata2())
     }
   }
+  //获取动态scrollyy值，为了让计算滚动与否显示函数刷新
+  useEffect(() => {
+    const handleScroll = () => {
+      if (ref.current) {
+        setscrollyy(ref.current.scrollTop)
+      }
+    }
+    if (ref.current) {
+      ref.current.addEventListener('scroll', handleScroll)
+    }
+    return () => {
+      if (ref.current) {
+        ref.current.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [])
+  //计算滚动显示与否函数
+  useEffect(() => {
+    setprescrollyy(scrollyy)
+    if (scrollY > 50) {
+      ref.current.style.overflowY = 'auto'
+    } else {
+      if (scrollyy > 0) {
+        if (prescrollyy < scrollyy) {
+          ref.current.style.overflowY = 'hidden'
+        } else {
+          ref.current.style.overflowY = 'auto'
+        }
+      } else {
+        ref.current.style.overflowY = 'hidden'
+      }
+    }
+  }, [scrollY, scrollyy, activeIndex])
+
   return (
     <TabsWrapper>
       <PullToRefresh onRefresh={onRefresh}>
-        <div
-          className="tabscontent"
-          style={{
-            overflowY: scrollY > 50 ? 'auto' : 'hidden',
-          }}
-        >
-          {res?.map((item) => {
-            return (
-              <div key={item.data.houseId}>
-                <div className="itemcontent">
-                  <img src={item.data.image.url} alt=""></img>
-                  <div
-                    className={item.discoveryContentType === 9 ? 'highimg' : ''}
-                  >
-                    <div> {item.data.summaryText}</div>
-                    <Ellipsis
-                      direction="end"
-                      content={item.data.houseName}
-                      rows={2}
-                      expandText="展开"
-                      collapseText="收起"
-                    />
+        <div ref={ref} className="tabscontent">
+          <TodayRead />
+          <div style={{ marginLeft: 10, marginRight: 10 }}>
+            <Divider
+              style={{
+                color: '#B7B7B7',
+                borderColor: '#B7B7B7',
+                borderStyle: 'solid',
+              }}
+            >
+              大家都在看
+            </Divider>
+          </div>
+
+          <Item />
+          <div className="house">
+            {res?.map((item) => {
+              return (
+                <div key={item.data.houseId}>
+                  <div className="itemcontent">
+                    <img src={item.data.image.url} alt=""></img>
+                    <div
+                      className={
+                        item.discoveryContentType === 9 ? 'highimg' : ''
+                      }
+                    >
+                      <div> {item.data.summaryText}</div>
+                      <Ellipsis
+                        direction="end"
+                        content={item.data.houseName}
+                        rows={2}
+                        expandText="展开"
+                        collapseText="收起"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
           <InfiniteScroll
             loadMore={loadMore}
             hasMore={hasMore}

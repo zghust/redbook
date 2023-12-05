@@ -9,11 +9,14 @@ export const TabsWrapper = styled.div`
     margin: 5px;
   }
   .tabscontent {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: 88vh;
+    height: 89vh;
+    .house {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
   }
+
   .tabscontent::-webkit-scrollbar {
     width: 0;
   }

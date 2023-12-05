@@ -68,7 +68,11 @@ function Tabss() {
           {tabItems.map((item, index) => (
             <Swiper.Item key={item.key}>
               <div className="content">
-                <TabsContent scrollY={scrollY} index={index} />
+                <TabsContent
+                  scrollY={scrollY}
+                  index={index}
+                  activeIndex={activeIndex}
+                />
               </div>
             </Swiper.Item>
           ))}

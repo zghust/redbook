@@ -25,4 +25,8 @@ export const TabsWrapper = styled.div`
   .scan {
     margin-left: 15px;
   }
+  .adm-tabs-header-mask-left,
+  .adm-tabs-header-mask-right {
+    background: rgb(238, 222, 222);
+  }
 `
