@@ -17,5 +17,8 @@ const TodayreadWrapper = styled.div`
   .item {
     margin: 1vw -1vw;
   }
+  .month {
+    font-size: 22px;
+  }
 `
 export default TodayreadWrapper

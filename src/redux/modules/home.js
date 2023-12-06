@@ -34,10 +34,15 @@ export const fetchdata2 = createAsyncThunk(
 
 const homeSlice = createSlice({
   name: 'home',
-  initialState: { detaildata0: [], detaildata1: [], detaildata2: [] },
+  initialState: {
+    detaildata0: [],
+    detaildata1: [],
+    detaildata2: [],
+    isdraweropen: false,
+  },
   reducers: {
-    getAdd(state, { payload }) {
-      state.cout = state.cout + payload
+    setDrawerOpen(state) {
+      state.isdraweropen = !state.isdraweropen
     },
     cleardata0(state) {
       state.detaildata0 = []
@@ -64,5 +69,6 @@ const homeSlice = createSlice({
       .addDefaultCase((state, action) => {})
   },
 })
-export const { cleardata0, cleardata1, cleardata2 } = homeSlice.actions
+export const { cleardata0, cleardata1, cleardata2, setDrawerOpen } =
+  homeSlice.actions
 export default homeSlice.reducer

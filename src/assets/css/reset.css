@@ -25,6 +25,12 @@ html {
 body {
   margin: 0;
   background-color: rgb(238, 222, 222);
+  /* background-image: url('../images/background.jpg'); */
+  background-size: cover; /* 使背景图片覆盖整个容器 */
+  background-position: center; /* 设置背景图片的位置为中心 */
+  background-repeat: no-repeat; /* 防止背景图片重复 */
+  height: 100vh; /* 使 body 占据整个视口高度 */
+  margin: 0; /* 清除默认的 body 边距 */
 }
 
 /**

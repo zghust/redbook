@@ -21,6 +21,7 @@ export const TabsWrapper = styled.div`
     right: 0px;
     opacity: 0;
     transition: all 0.3s ease-out;
+    z-index: 999;
   }
   .scan {
     margin-left: 15px;

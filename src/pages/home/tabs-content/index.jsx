@@ -102,33 +102,21 @@ function TabsContent({ scrollY, index, activeIndex }) {
               大家都在看
             </Divider>
           </div>
+          {res.map((item) => {
+            return (
+              <div key={item.data.houseId}>
+                <Item
+                  src={item.data.image.url}
+                  summary={item.data.summaryText}
+                  housename={item.data.houseName}
+                  favor={item.data.productPrice}
+                  location={item.data.location}
+                  text={item.data.priceTipBadge.text}
+                />
+              </div>
+            )
+          })}
 
-          <Item />
-          <div className="house">
-            {res?.map((item) => {
-              return (
-                <div key={item.data.houseId}>
-                  <div className="itemcontent">
-                    <img src={item.data.image.url} alt=""></img>
-                    <div
-                      className={
-                        item.discoveryContentType === 9 ? 'highimg' : ''
-                      }
-                    >
-                      <div> {item.data.summaryText}</div>
-                      <Ellipsis
-                        direction="end"
-                        content={item.data.houseName}
-                        rows={2}
-                        expandText="展开"
-                        collapseText="收起"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
           <InfiniteScroll
             loadMore={loadMore}
             hasMore={hasMore}
