@@ -41,7 +41,7 @@ const homeSlice = createSlice({
     isdraweropen: false,
   },
   reducers: {
-    setDrawerOpen(state) {
+    setDrawerOpen(state, { payload }) {
       state.isdraweropen = !state.isdraweropen
     },
     cleardata0(state) {

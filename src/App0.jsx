@@ -7,6 +7,7 @@ const SearchPage = React.lazy(() => import('./pages/searchpage'))
 const App0 = () => {
   const dispatch = useDispatch()
   const isdraweropen = useSelector((state) => state.home.isdraweropen)
+
   const onclose = () => {
     dispatch(setDrawerOpen())
   }

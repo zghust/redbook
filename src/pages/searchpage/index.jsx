@@ -4,6 +4,7 @@ import { LeftOutline } from 'antd-mobile-icons'
 import { useEffect, useRef, useState } from 'react'
 function Search({ isOpen, onClose }) {
   const ref = useRef()
+
   useEffect(() => {
     if (isOpen) {
       ref.current.focus()

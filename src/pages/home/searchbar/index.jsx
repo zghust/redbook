@@ -1,20 +1,32 @@
 import { ScanningOutline } from 'antd-mobile-icons'
-import { SearchBar } from 'antd-mobile'
 import { SearchWrapper } from './style'
 import { memo, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setDrawerOpen } from '../../../redux/modules/home'
+
 const data = ['随人泉眼王', '落叶丰华', '无路狂飙', '登入殿堂李']
 function SearchBars() {
   const dispatch = useDispatch()
-  const handleOenDrawer = () => {
-    dispatch(setDrawerOpen())
+  const handleOenDrawer = (e) => {
+    dispatch(setDrawerOpen(e))
   }
 
-  const [inputValue, setInputValue] = useState('123')
+  const [inputValue, setInputValue] = useState(data[0])
   const handleClick = (e) => {
     console.log(inputValue)
   }
+  useEffect(() => {
+    let i = 1
+    const interval = setInterval(() => {
+      setInputValue(data[i])
+      if (i === data.length - 1) {
+        i = 0
+      } else {
+        i++
+      }
+    }, 1500)
+    return () => clearInterval(interval)
+  }, [])
   return (
     <SearchWrapper>
       <div className="searchbar">
@@ -23,25 +35,9 @@ function SearchBars() {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onClick={handleOenDrawer}
+            onClick={(e) => handleOenDrawer(e.target.value)}
           />
-          <span
-            className="inputvalueclick"
-            onClick={handleClick}
-            style={{
-              position: 'fixed',
-              top: 29,
-              left: 33,
-              width: 80,
-              height: 12,
-              backgroundColor: 'white',
-              fontSize: 12,
-              transform: '',
-              transition: 'transform 0.1s ease-out',
-            }}
-          >
-            {inputValue}
-          </span>
+
           <span className="search" onClick={handleClick}>
             搜索
           </span>

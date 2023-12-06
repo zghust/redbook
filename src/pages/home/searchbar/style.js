@@ -20,16 +20,14 @@ export const SearchWrapper = styled.div`
     font-family: '宋体';
     color: red;
   }
-  .adm-search-bar {
-    width: 80vw;
-    --border-radius: 16px;
-  }
+
   input {
     width: 75vw;
     height: 24px;
     border-radius: 12px;
     padding-left: 12px;
-    font-size: 12px;
-    color: white;
+    font-size: 14px;
+    color: gray;
+    border: none;
   }
 `
