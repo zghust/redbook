@@ -4,31 +4,31 @@ import http from '../../utils/http'
 export const fetchdata0 = createAsyncThunk(
   '/home/multidata0',
   async (currentPage = 1) => {
-    const res = await http.get('home/houselist', {
+    const res = await http.get('api/article/list', {
       params: { page: currentPage },
     })
-    // console.log(res.data.data)
-    return res.data.data
+
+    return res.data
   }
 )
 export const fetchdata1 = createAsyncThunk(
   '/home/multidata1',
   async (currentPage = 1) => {
-    const res = await http.get('home/houselist', {
+    const res = await http.get('api/article/list', {
       params: { page: currentPage },
     })
     // console.log(res.data.data)
-    return res.data.data
+    return res.data
   }
 )
 export const fetchdata2 = createAsyncThunk(
   '/home/multidata2',
   async (currentPage = 1) => {
-    const res = await http.get('home/houselist', {
+    const res = await http.get('api/article/list', {
       params: { page: currentPage },
     })
     // console.log(res.data.data)
-    return res.data.data
+    return res.data
   }
 )
 
@@ -38,6 +38,9 @@ const homeSlice = createSlice({
     detaildata0: [],
     detaildata1: [],
     detaildata2: [],
+    total0: 0,
+    total1: 0,
+    total2: 0,
     isdraweropen: false,
   },
   reducers: {
@@ -57,13 +60,16 @@ const homeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchdata0.fulfilled, (state, { payload }) => {
-        state.detaildata0 = [...state.detaildata0, ...payload]
+        state.detaildata0 = [...state.detaildata0, ...payload.data]
+        state.total0 = payload.total
       })
       .addCase(fetchdata1.fulfilled, (state, { payload }) => {
-        state.detaildata1 = [...state.detaildata1, ...payload]
+        state.detaildata1 = [...state.detaildata1, ...payload.data]
+        state.total1 = payload.total
       })
       .addCase(fetchdata2.fulfilled, (state, { payload }) => {
-        state.detaildata2 = [...state.detaildata2, ...payload]
+        state.detaildata2 = [...state.detaildata2, ...payload.data]
+        state.total2 = payload.total
       })
 
       .addDefaultCase((state, action) => {})

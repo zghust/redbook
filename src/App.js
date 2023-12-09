@@ -4,7 +4,7 @@ import { AppWrapper } from './style'
 import Tabbar from './components/tabbar'
 import { Navigate, useNavigate } from 'react-router-dom'
 import './assets/css/reset.css'
-import React, { useState } from 'react'
+import React from 'react'
 import { SafeArea } from 'antd-mobile'
 const Home = React.lazy(() => import('./pages/home'))
 const Favor = React.lazy(() => import('./pages/favor'))

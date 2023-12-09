@@ -13,8 +13,15 @@ import {
 } from '../../../redux/modules/home'
 import Item from './item'
 import TodayRead from './todayread'
-function TabsContent({ scrollY, index, activeIndex }) {
+import HotReadList from './hotread'
+import Tabsin from './toplist'
+import GetScrollY from '../../../utils/getscrolly'
+
+function TabsContent({ index, activeIndex }) {
+  const scrollY = GetScrollY()
   const res = useSelector((state) => state.home[`detaildata${index}`])
+  const total = useSelector((state) => state.home[`total${index}`])
+
   const ref = useRef()
   const dispatch = useDispatch()
   const [hasMore, setHasMore] = useState(true)
@@ -25,16 +32,26 @@ function TabsContent({ scrollY, index, activeIndex }) {
     if (index === 0) {
       await dispatch(fetchdata0(currentpage)).then(() => {
         setcurrentpage(currentpage + 1)
+        if (total > 0 && 12 * currentpage >= total) {
+          setHasMore(false)
+        }
       })
     }
     if (index === 1) {
       await dispatch(fetchdata1(currentpage)).then(() => {
         setcurrentpage(currentpage + 1)
+        console.log(currentpage, total)
+        if (total > 0 && 12 * currentpage >= total) {
+          setHasMore(false)
+        }
       })
     }
     if (index === 2) {
       await dispatch(fetchdata2(currentpage)).then(() => {
         setcurrentpage(currentpage + 1)
+        if (total > 0 && 12 * currentpage >= total) {
+          setHasMore(false)
+        }
       })
     }
   }
@@ -90,28 +107,31 @@ function TabsContent({ scrollY, index, activeIndex }) {
     <TabsWrapper>
       <PullToRefresh onRefresh={onRefresh}>
         <div ref={ref} className="tabscontent">
+          <HotReadList />
           <TodayRead />
+          <Tabsin />
           <div style={{ marginLeft: 10, marginRight: 10 }}>
             <Divider
               style={{
-                color: '#B7B7B7',
+                color: 'grey',
                 borderColor: '#B7B7B7',
                 borderStyle: 'solid',
               }}
             >
-              大家都在看
+              猜你也想看
             </Divider>
           </div>
           {res.map((item) => {
             return (
-              <div key={item.data.houseId}>
+              <div key={item.id}>
                 <Item
-                  src={item.data.image.url}
-                  summary={item.data.summaryText}
-                  housename={item.data.houseName}
-                  favor={item.data.productPrice}
-                  location={item.data.location}
-                  text={item.data.priceTipBadge.text}
+                  src={item.src}
+                  asktitle={item.ask_title}
+                  subtitle={item.sub_title}
+                  favor={item.favor}
+                  maintype={item.main_type}
+                  subtype={item.sub_type}
+                  content={item.content}
                 />
               </div>
             )

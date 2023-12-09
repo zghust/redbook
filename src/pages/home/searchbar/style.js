@@ -4,7 +4,7 @@ export const SearchWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px auto 20px auto;
+    margin: 20px auto 10px auto;
     width: 90vw;
     font-size: 20px;
   }
@@ -15,7 +15,7 @@ export const SearchWrapper = styled.div`
   .search {
     position: absolute;
     right: 20px;
-    top: 5px;
+    top: 8px;
     font-size: 16px;
     font-family: '宋体';
     color: red;
@@ -23,11 +23,14 @@ export const SearchWrapper = styled.div`
 
   input {
     width: 75vw;
-    height: 24px;
-    border-radius: 12px;
+    height: 30px;
+    border-radius: 15px;
     padding-left: 12px;
     font-size: 14px;
     color: gray;
-    border: none;
+    border: 1px solid pink;
+  }
+  .scan {
+    font-size: 24px;
   }
 `

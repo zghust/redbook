@@ -12,7 +12,7 @@ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   font-size: 14px;
-  font-family: 'Microsoft YaHei', sans-serif, '黑体', '宋体';
+  font-family: '宋体', 'Microsoft YaHei', sans-serif;
 }
 
 /* Sections
@@ -24,13 +24,12 @@ html {
 
 body {
   margin: 0;
-  background-color: rgb(238, 222, 222);
-  /* background-image: url('../images/background.jpg'); */
-  background-size: cover; /* 使背景图片覆盖整个容器 */
-  background-position: center; /* 设置背景图片的位置为中心 */
-  background-repeat: no-repeat; /* 防止背景图片重复 */
+  background-color: rgb(238, 233, 233);
+
+  /* background: linear-gradient(to bottom, rgb(238, 222, 222), white); */
+  /* background: url('/src/assets/images/background.jpg') no-repeat center/100%; */
   height: 100vh; /* 使 body 占据整个视口高度 */
-  margin: 0; /* 清除默认的 body 边距 */
+  padding: 0; /* 清除默认的 body 边距 */
 }
 
 /**
@@ -211,13 +210,6 @@ select {
  * Correct the inability to style clickable types in iOS and Safari.
  */
 
-button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
-  -webkit-appearance: button;
-}
-
 /**
  * Remove the inner border and padding in Firefox.
  */
@@ -305,11 +297,6 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-
-[type='search'] {
-  -webkit-appearance: textfield; /* 1 */
-  outline-offset: -2px; /* 2 */
-}
 
 /**
  * Remove the inner padding in Chrome and Safari on macOS.

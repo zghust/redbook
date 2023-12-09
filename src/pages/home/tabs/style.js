@@ -4,13 +4,31 @@ export const TabsWrapper = styled.div`
     position: relative;
   }
   .adm-tabs-tab-list {
-    width: 40vw;
-    margin-left: 20px;
-  }
-  .adm-tabs-tab {
-    font-size: 15px;
+    width: 60vw;
+    margin-left: 2vw;
   }
 
+  .adm-tabs-tab {
+    padding-bottom: 1vw;
+  }
+  .adm-tabs-tab-line {
+    position: absolute;
+    bottom: 1vw;
+    height: 1vw;
+    background: linear-gradient(to right, #ff5555, white);
+    border-radius: 0 0 1vw 1vw;
+  }
+  .adm-tabs-header {
+    border-bottom: none;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+  }
+  .adm-tabs-tab-wrapper {
+    padding: 0 6px;
+  }
+  .adm-tabs-tab-wrapper-stretch {
+    flex: none;
+  }
   .searchandscan {
     display: flex;
     justify-content: flex-end;
@@ -29,5 +47,6 @@ export const TabsWrapper = styled.div`
   .adm-tabs-header-mask-left,
   .adm-tabs-header-mask-right {
     background: rgb(238, 222, 222);
+    opacity: 0;
   }
 `

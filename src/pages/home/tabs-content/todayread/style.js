@@ -7,6 +7,14 @@ const TodayreadWrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  .bigtitle {
+    font-family: '宋体';
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .itemdiv {
+    margin: 0vw;
+  }
   .adm-card {
     padding: 0 1vw;
     margin: 2vw 2vw 0 2vw;

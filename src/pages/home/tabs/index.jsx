@@ -1,48 +1,33 @@
 import { Tabs, Swiper } from 'antd-mobile'
 import { TabsWrapper } from './style'
-import TabsContent from '../tabs-content/index'
-import { SearchOutline, ScanningOutline } from 'antd-mobile-icons'
-import {
-  fetchdata0,
-  fetchdata1,
-  fetchdata2,
-  cleardata,
-} from '../../../redux/modules/home'
-import { useEffect, useRef, useState, memo } from 'react'
-const tabItems = [
-  { key: '3', title: '男频' },
-  { key: '9', title: '女频' },
-  { key: 'animals', title: '出版' },
-]
-function Tabss() {
+import { useRef, useState, memo } from 'react'
+
+const CustomTab = ({ title, selected }) => {
+  // 在选中时设置字体变大的样式
+  const textStyle = {
+    fontFamily: '宋体',
+    color: selected ? 'black' : 'grey',
+    fontSize: selected ? '20px' : '18px',
+
+    fontWeight: selected ? 'bold' : 'normal',
+  }
+
+  return <div style={textStyle}>{title}</div>
+}
+
+function Tabss({
+  tabitems,
+  searchandscan: SearchAndScan,
+  tabscontent: TabsContent,
+}) {
+  const tabItems = tabitems
   const swiperRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(1)
-  const [scrollY, setScrollY] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const newY = document.documentElement.scrollTop
-      setScrollY(newY)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   return (
     <TabsWrapper>
       <div className="tabss">
-        <div className="searchandscan" style={{ opacity: scrollY > 50 && 1 }}>
-          <div className="searchicon" onClick={() => console.log('aaa')}>
-            <SearchOutline />
-          </div>
-          <div className="scan">
-            <ScanningOutline />
-          </div>
-        </div>
+        {SearchAndScan && <SearchAndScan />}
         <Tabs
           activeKey={tabItems[activeIndex].key}
           onChange={(key) => {
@@ -52,7 +37,15 @@ function Tabss() {
           }}
         >
           {tabItems.map((item) => (
-            <Tabs.Tab title={item.title} key={item.key} />
+            <Tabs.Tab
+              title={
+                <CustomTab
+                  title={item.title}
+                  selected={item.key === tabItems[activeIndex].key}
+                />
+              }
+              key={item.key}
+            />
           ))}
         </Tabs>
         <Swiper
@@ -68,11 +61,7 @@ function Tabss() {
           {tabItems.map((item, index) => (
             <Swiper.Item key={item.key}>
               <div className="content">
-                <TabsContent
-                  scrollY={scrollY}
-                  index={index}
-                  activeIndex={activeIndex}
-                />
+                <TabsContent index={index} activeIndex={activeIndex} />
               </div>
             </Swiper.Item>
           ))}
