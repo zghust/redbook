@@ -2,8 +2,7 @@ import { SearchandscansWrapper } from './style'
 import { SearchOutline, ScanningOutline } from 'antd-mobile-icons'
 import GetScrollY from '../../../../utils/getscrolly'
 
-function SearchAndScan() {
-  const scrollY = GetScrollY()
+function SearchAndScan({ scrollY }) {
   return (
     <SearchandscansWrapper>
       <div className="searchandscan" style={{ opacity: scrollY > 60 && 1 }}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Drawer from './components/drawer'
+import { AppWrapper } from './style'
 import App from './App'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDrawerOpen } from './redux/modules/home'
@@ -12,12 +13,14 @@ const App0 = () => {
     dispatch(setDrawerOpen())
   }
   return (
-    <div>
-      <Drawer isOpen={isdraweropen} onClose={onclose}>
-        <SearchPage isOpen={isdraweropen} onClose={onclose} />
-      </Drawer>
-      <App />
-    </div>
+    <AppWrapper>
+      <div className="main">
+        <Drawer isOpen={isdraweropen} onClose={onclose}>
+          <SearchPage isOpen={isdraweropen} onClose={onclose} />
+        </Drawer>
+        <App />
+      </div>
+    </AppWrapper>
   )
 }
 

@@ -17,11 +17,10 @@ import HotReadList from './hotread'
 import Tabsin from './toplist'
 import GetScrollY from '../../../utils/getscrolly'
 
-function TabsContent({ index, activeIndex }) {
-  const scrollY = GetScrollY()
+function TabsContent({ index, activeIndex, scrollY }) {
+  // const scrollY = GetScrollY()
   const res = useSelector((state) => state.home[`detaildata${index}`])
   const total = useSelector((state) => state.home[`total${index}`])
-
   const ref = useRef()
   const dispatch = useDispatch()
   const [hasMore, setHasMore] = useState(true)
@@ -40,7 +39,6 @@ function TabsContent({ index, activeIndex }) {
     if (index === 1) {
       await dispatch(fetchdata1(currentpage)).then(() => {
         setcurrentpage(currentpage + 1)
-        console.log(currentpage, total)
         if (total > 0 && 12 * currentpage >= total) {
           setHasMore(false)
         }
@@ -108,7 +106,7 @@ function TabsContent({ index, activeIndex }) {
       <PullToRefresh onRefresh={onRefresh}>
         <div ref={ref} className="tabscontent">
           <HotReadList />
-          <TodayRead />
+          <TodayRead res={res} />
           <Tabsin />
           <div style={{ marginLeft: 10, marginRight: 10 }}>
             <Divider
@@ -140,7 +138,7 @@ function TabsContent({ index, activeIndex }) {
           <InfiniteScroll
             loadMore={loadMore}
             hasMore={hasMore}
-            threshold={25}
+            threshold={550}
           />
         </div>
       </PullToRefresh>

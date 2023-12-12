@@ -9,4 +9,7 @@ export const TabWrapper = styled.div`
     z-index: 999;
     padding-top: 10px;
   }
+  .adm-tab-bar-item-active {
+    color: red;
+  }
 `

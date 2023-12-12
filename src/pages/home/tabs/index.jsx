@@ -19,6 +19,7 @@ function Tabss({
   tabitems,
   searchandscan: SearchAndScan,
   tabscontent: TabsContent,
+  scrollY,
 }) {
   const tabItems = tabitems
   const swiperRef = useRef(null)
@@ -27,7 +28,7 @@ function Tabss({
   return (
     <TabsWrapper>
       <div className="tabss">
-        {SearchAndScan && <SearchAndScan />}
+        {SearchAndScan && <SearchAndScan scrollY={scrollY} />}
         <Tabs
           activeKey={tabItems[activeIndex].key}
           onChange={(key) => {
@@ -61,7 +62,11 @@ function Tabss({
           {tabItems.map((item, index) => (
             <Swiper.Item key={item.key}>
               <div className="content">
-                <TabsContent index={index} activeIndex={activeIndex} />
+                <TabsContent
+                  index={index}
+                  activeIndex={activeIndex}
+                  scrollY={scrollY}
+                />
               </div>
             </Swiper.Item>
           ))}

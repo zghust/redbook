@@ -15,6 +15,7 @@ export const SearchWraper = styled.div`
   input {
     border: 1px solid pink;
     border-radius: 20px;
+    height: 30px;
     padding-left: 12px;
     outline: none;
   }

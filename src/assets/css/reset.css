@@ -24,10 +24,21 @@ html {
 
 body {
   margin: 0;
-  background-color: rgb(238, 233, 233);
+  /* background-color: rgb(238, 233, 233); */
 
-  /* background: linear-gradient(to bottom, rgb(238, 222, 222), white); */
+  background: linear-gradient(
+    to bottom,
+    rgb(246, 240, 240),
+    rgb(246, 246, 246),
+    rgb(246, 246, 246),
+    rgb(246, 246, 246)
+  );
   /* background: url('/src/assets/images/background.jpg') no-repeat center/100%; */
+  /* background: radial-gradient(
+    ellipse at top left,
+    rgb(238, 221, 221),
+    rgb(255, 255, 255)
+  ); */
   height: 100vh; /* 使 body 占据整个视口高度 */
   padding: 0; /* 清除默认的 body 边距 */
 }

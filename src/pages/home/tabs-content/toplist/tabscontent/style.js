@@ -3,6 +3,9 @@ export const TabscontentWrapper = styled.div`
   .all {
     margin: 0 2vw;
   }
+  .contents::-webkit-scrollbar {
+    width: 0;
+  }
   .contents {
     display: flex;
     flex-direction: column;
@@ -22,7 +25,7 @@ export const TabscontentWrapper = styled.div`
   .alltops {
     width: 90vw;
     height: 8vw;
-    background-color: #ccc;
+    background-color: #eaeaea;
     border-radius: 4vw;
     text-align: center;
     line-height: 8vw;

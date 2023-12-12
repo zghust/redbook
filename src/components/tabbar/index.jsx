@@ -14,17 +14,20 @@ import { useLocation } from 'react-router-dom'
 const tabs = [
   {
     title: '书城',
-    icon: (active) => (active ? <EyeFill /> : <EyeOutline />),
+    icon: (active) =>
+      active ? <EyeFill color="var(--adm-color-danger)" /> : <EyeOutline />,
     path: '/home',
   },
   {
     title: '喜欢',
-    icon: (active) => (active ? <HeartFill /> : <HeartOutline />),
+    icon: (active) =>
+      active ? <HeartFill color="var(--adm-color-danger)" /> : <HeartOutline />,
     path: '/favor',
   },
   {
     title: '我的',
-    icon: (active) => (active ? <SmileFill /> : <SmileOutline />),
+    icon: (active) =>
+      active ? <SmileFill color="var(--adm-color-danger)" /> : <SmileOutline />,
     path: '/mine',
   },
 ]
@@ -37,9 +40,6 @@ function Tabbar({ navigate }) {
   useEffect(() => {
     navigate(currentIndex)
   }, [currentIndex])
-  // useEffect(() => {
-  //   setCurrentIndex(location.pathname)
-  // }, [location])
   return (
     <TabWrapper>
       <TabBar

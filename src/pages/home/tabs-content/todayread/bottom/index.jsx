@@ -1,37 +1,19 @@
+import { useState } from 'react'
 import BottomWrapper from './style'
 import { Image, Space, Divider } from 'antd-mobile'
-const data = [
-  {
-    title: '安然',
-    src: 'https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60',
-    maintitle: '精选书单推荐',
-  },
-  {
-    title: '情深山高',
-    src: 'https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60',
-    maintitle: '现实口碑好文',
-  },
-  {
-    title: '万年王八往北走',
-    src: 'https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60',
-    maintitle: '精选书单推荐',
-  },
-  {
-    title: '不怕不怕辣',
-    src: 'https://images.unsplash.com/photo-1567945716310-4745a6b7844b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60',
-    maintitle: '科技军事要闻',
-  },
-]
 
-function Bottom() {
+function Bottom({ res }) {
   const onscroll = (e) => {
     e.stopPropagation()
   }
+  const [random, setrandom] = useState(Math.floor(Math.random() * 5))
+  const res1 = res.slice(random, random + 4)
+
   return (
     <BottomWrapper>
       <div className="bottom" onTouchMove={onscroll}>
-        {data.map((item) => (
-          <div key={item.title} className="bottomItem">
+        {res1.map((item) => (
+          <div key={item.id} className="bottomItem">
             <Space direction="vertical">
               <div className="contenttop">
                 <Image
@@ -41,9 +23,11 @@ function Bottom() {
                   height={68}
                   style={{ borderRadius: 4 }}
                 />
-                <div className="titleinner">{item.title}</div>
+                <div className="titleinner">《{item.sub_title}》</div>
               </div>
-              <div>{item.maintitle}</div>
+              <div>
+                {item.sub_type}·{item.main_type}
+              </div>
             </Space>
           </div>
         ))}

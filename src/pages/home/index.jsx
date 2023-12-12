@@ -1,6 +1,6 @@
 import Tabss from './tabs/index'
 import { HomeWrapper } from './style'
-import { memo } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import SearchBars from './searchbar'
 import TabsContent from './tabs-content'
 import SearchAndScan from './tabs/searchanscan'
@@ -11,9 +11,22 @@ const tabItems = [
 ]
 
 function Home() {
+  const ref = useRef()
+  const [scrollY, setScrollY] = useState(0)
+  const handleScroll = () => {
+    const scrollTopValue = ref.current.scrollTop
+    setScrollY(scrollTopValue)
+  }
+  useEffect(() => {
+    ref.current.addEventListener('scroll', handleScroll)
+    return () => {
+      ref.current?.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <HomeWrapper>
-      <div className="home">
+      <div className="home" ref={ref}>
         <div className="searchbar">
           <SearchBars />
         </div>
@@ -22,6 +35,7 @@ function Home() {
             tabitems={tabItems}
             tabscontent={TabsContent}
             searchandscan={SearchAndScan}
+            scrollY={scrollY}
           />
         </div>
       </div>
